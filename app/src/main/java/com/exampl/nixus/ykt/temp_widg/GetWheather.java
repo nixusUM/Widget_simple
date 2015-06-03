@@ -18,7 +18,6 @@ public class GetWheather {
         HttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
         String line;
-
         try {
             HttpResponse response = httpClient.execute(httpGet);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
@@ -33,7 +32,7 @@ public class GetWheather {
             }
         } catch (Exception e)
         {
-
+            e.printStackTrace();
         }
         return result;
     }

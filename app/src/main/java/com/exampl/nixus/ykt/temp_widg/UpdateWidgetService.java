@@ -15,7 +15,6 @@ public class UpdateWidgetService extends Service {
     private static final String LOG = "com.exampl.nixus.ykt.temp_widg";
     @Override
     public void onStart(Intent intent, int startId) {
-
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
                 .getApplicationContext());
         int[] allWidgetIds = intent
@@ -29,7 +28,6 @@ public class UpdateWidgetService extends Service {
             clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
                     allWidgetIds);
-
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     getApplicationContext(), 0, clickIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
@@ -37,10 +35,8 @@ public class UpdateWidgetService extends Service {
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
         stopSelf();
-
         super.onStart(intent, startId);
     }
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;

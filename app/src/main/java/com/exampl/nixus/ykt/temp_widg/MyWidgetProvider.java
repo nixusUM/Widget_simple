@@ -30,13 +30,11 @@ public class MyWidgetProvider extends AppWidgetProvider {
         RemoteViews remoteViews;
         AppWidgetManager appWidgetManager;
         ComponentName thisWidget;
-
         public MyTime(Context context, AppWidgetManager appWidgetManager) {
             this.appWidgetManager = appWidgetManager;
             remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.prj01);
             thisWidget = new ComponentName(context, MyWidgetProvider.class);
-
         }
         @Override
         public void run() {
@@ -44,5 +42,4 @@ public class MyWidgetProvider extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(thisWidget, remoteViews);
         }
     }
-
 }
