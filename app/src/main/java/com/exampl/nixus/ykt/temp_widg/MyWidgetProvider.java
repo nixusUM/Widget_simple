@@ -24,7 +24,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
         context.startService(intent);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new MyTime(context, appWidgetManager), 1,
-                1000);
+                90400000);
     }
     private class MyTime extends TimerTask {
         RemoteViews remoteViews;
