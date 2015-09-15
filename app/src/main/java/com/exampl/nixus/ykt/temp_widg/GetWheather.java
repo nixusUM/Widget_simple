@@ -1,39 +1,40 @@
 package com.exampl.nixus.ykt.temp_widg;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class GetWheather {
-    public String USER_URL = "http://yabesco.ru/getTemp1.php";
-    public String getInet()
+    public String getInet(String uri)
     {
-        String result = "";
-        String url = USER_URL;
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(url);
-        String line;
+        BufferedReader reader = null;
         try {
-            HttpResponse response = httpClient.execute(httpGet);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
-            {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                StringBuilder sb = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    String numberOnly= line.replaceAll("[^0-9-+]", "");
-                    sb.append(numberOnly);
-                }
-                result = sb.toString();
+            URL url = new URL(uri);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            StringBuilder sb = new StringBuilder();
+            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String numberOnly= line.replaceAll("[^0-9-+]", "");
+                sb.append(numberOnly);
             }
+                return sb.toString();
+
         } catch (Exception e)
         {
             e.printStackTrace();
+            return null;
+        }finally {
+            if (reader !=null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
         }
-        return result;
     }
 }

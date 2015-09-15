@@ -38,7 +38,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
         }
         @Override
         public void run() {
-            remoteViews.setTextViewText(R.id.update, '+' + in.getInet() + " C" );
+            remoteViews.setTextViewText(R.id.update, '+' + in.getInet("http://yabesco.ru/getTemp1.php") + " C" );
             appWidgetManager.updateAppWidget(thisWidget, remoteViews);
         }
     }
