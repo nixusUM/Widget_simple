@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 public class MyWidgetProvider extends AppWidgetProvider {
     GetWheather in = new GetWheather();
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
                          int[] appWidgetIds) {
@@ -26,6 +27,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
         timer.scheduleAtFixedRate(new MyTime(context, appWidgetManager), 1,
                 90400000);
     }
+
     private class MyTime extends TimerTask {
         RemoteViews remoteViews;
         AppWidgetManager appWidgetManager;
@@ -36,6 +38,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
                     R.layout.prj01);
             thisWidget = new ComponentName(context, MyWidgetProvider.class);
         }
+
         @Override
         public void run() {
             remoteViews.setTextViewText(R.id.update, '+' + in.getInet("http://yabesco.ru/getTemp1.php") + " C" );

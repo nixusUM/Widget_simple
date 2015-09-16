@@ -7,9 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GetWheather {
-    public String getInet(String uri)
-    {
+    public String getInet(String uri) {
+
         BufferedReader reader = null;
+
         try {
             URL url = new URL(uri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -22,11 +23,16 @@ public class GetWheather {
             }
                 return sb.toString();
 
-        } catch (Exception e)
+        }
+
+        catch (Exception e)
         {
             e.printStackTrace();
             return null;
-        }finally {
+        }
+
+        finally {
+
             if (reader !=null){
                 try {
                     reader.close();
